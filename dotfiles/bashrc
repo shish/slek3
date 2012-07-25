@@ -1,0 +1,121 @@
+#!/bin/bash
+
+###########################################################
+# misc env variables
+
+PATH_SYS=/sbin:/usr/local/sbin:/usr/sbin
+PATH_USR=/bin:/usr/local/bin:/usr/bin:/usr/games
+PATH_LOC=~/bin:~/local/bin:~/.local/bin
+PATH_OPT=/opt/cs/bin:/opt/e17/bin:/opt/cb/bin
+export PATH=$PATH_LOC:$PATH_SYS:$PATH_USR:$PATH_OPT
+
+export PYTHONPATH="/opt/e17/lib/python2.6/site-packages:$PYTHONPATH"
+export LD_LIBRARY_PATH="/opt/e17/lib:$LD_LIBRARY_PATH"
+export GPG_TTY=\`tty\`
+export EDITOR=vim
+export TZ=Europe/London
+
+
+###########################################################
+# exit if we're being called from a script; only do settings
+# for interactive mode
+
+[ -z "$PS1" ] && return
+
+
+###########################################################
+# keychain
+
+# ssh does this sensibly now, prompting on first connect
+#if [ \`whoami\` == "shish" ] && [ "x$SSH_AGENT_PID" == "x" ] && [ -f ~/.ssh/id_dsa ] ; then
+#	keychain -q ~/.ssh/id_dsa
+#	. ~/.keychain/\`hostname\`-sh
+#fi
+
+if [ -n "$GNOME_KEYRING_PID" ] && [ -f ~/.ssh/id_rsa ] ; then
+	eval $(gnome-keyring-daemon --start)
+	export SSH_AUTH_SOCK
+fi
+
+
+###########################################################
+# common aliases
+
+if [ `uname -s` == "SunOS" ] ; then
+	alias 'ls'='gnuls --color=auto'
+else
+	alias 'ls'='ls --color=auto'
+fi
+
+alias 'l'='ls'
+alias 'll'='ls -golh'
+alias 'less'='less -r'
+alias 'rm'='rm -i'
+alias 'mv'='mv -i'
+alias 'cp'='cp -i'
+alias 'more'='less -E'
+alias 'which'='type -p'
+alias 'apt'='sudo aptitude'
+alias 'xs'='screen -S net htop'
+
+
+###########################################################
+# a pretty prompt
+ 
+C1='\[\e[01;33m\]'
+C2='\[\e[01;37m\]'
+C3='\[\e[00;33m\]'
+C4='\[\e[00m\]'
+
+XTITLE='\e]2;\u@\H -- \w\a'
+if [ "$DISPLAY" == "" ] ; then
+        XTITLE=''
+fi
+PS1=$XTITLE$C2'['$C1'\u'$C2'] on ['$C1'\H'$C2'] '$C2'\d \T'$NONE$C3' \w\n$(git branch 2>/dev/null | grep '^*' | colrm 1 2)>'$C4''
+PS2=$C2'['$C1'more info needed'$C2']\n'$C4''
+
+
+ 
+###########################################################
+# add personal program and manual folders if they exist
+
+[[ -f ~/.config/autopackage/paths-bash ]] && . ~/.config/autopackage/paths-bash
+[[ -f /opt/kroc/bin/kroc-setup.sh      ]] && . /opt/kroc/bin/kroc-setup.sh
+[[ -f /etc/bash_completion             ]] && . /etc/bash_completion
+
+
+###########################################################
+# shell options
+
+shopt -s cdspell
+shopt -s dirspell
+shopt -s checkhash
+shopt -s histappend
+shopt -s checkwinsize
+shopt -s no_empty_cmd_completion
+PROMPT_COMMAND='history -a'
+HISTCONTROL=ignoredups
+HISTCONTROL=ignoreboth
+HISTSIZE=10000
+HISTFILESIZE=10000
+HISTTIMEFORMAT="%F %T"
+
+
+###########################################################
+# say hello
+
+if md5sum -c ~/.motd.seen ; then
+    MSG=`fortune`
+else
+    MSG=`cat /etc/motd`
+    md5sum /etc/motd > ~/.motd.seen
+fi
+
+clear
+if [ ! -z "$MSG" ] ; then
+	echo 
+	echo "$MSG"
+	echo
+	echo "                    ==========                    =========="
+	echo
+fi

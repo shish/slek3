@@ -1,0 +1,5 @@
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+set completion-ignore-case On
+set mark-symlinked-directories On
