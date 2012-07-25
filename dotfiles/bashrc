@@ -98,7 +98,7 @@ HISTCONTROL=ignoredups
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=10000
-HISTTIMEFORMAT="%F %T"
+HISTTIMEFORMAT="%F %T -- "
 
 
 ###########################################################
