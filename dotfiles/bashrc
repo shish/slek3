@@ -5,7 +5,8 @@
 
 PATH_SYS=/sbin:/usr/local/sbin:/usr/sbin
 PATH_USR=/bin:/usr/local/bin:/usr/bin:/usr/games
-PATH_LOC=~/bin:~/local/bin:~/.local/bin
+PATH_PHP=~/pear/pear:~/pear:~/.pear:~/.local/pear
+PATH_LOC=~/bin:~/local/bin:~/.local/bin:$PATH_PHP
 PATH_OPT=/opt/cs/bin:/opt/e17/bin:/opt/cb/bin
 export PATH=$PATH_LOC:$PATH_SYS:$PATH_USR:$PATH_OPT
 
