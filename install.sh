@@ -3,7 +3,7 @@
 cd `dirname $0`
 export SLEK_DIR=`pwd`
 export SLEK_PRIVATE=$SLEK_DIR/private
-export BACKUP_DIR="$SLEK_DIR/backup-`date +%s`"
+export BACKUP_DIR="$SLEK_DIR/backup-`date +%Y%m%d-%H%M%S`"
 mkdir $BACKUP_DIR
 
 cd ~/
