@@ -58,6 +58,8 @@ alias 'more'='less -E'
 alias 'which'='type -p'
 alias 'apt'='sudo aptitude'
 alias 'xs'='screen -S net htop'
+alias 'eve'='wine "C:\Program Files\CCP\EVE\bin\ExeFile.exe"'
+alias 'eve-launcher'='wine "C:\Program Files\CCP\EVE\eve.exe"'
 
 
 ###########################################################
