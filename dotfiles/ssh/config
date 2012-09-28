@@ -4,9 +4,9 @@ ForwardAgent yes
 ForwardX11 yes
 ForwardX11Trusted yes
 CheckHostIP yes
-IdentityFile ~/.ssh/identity
-IdentityFile ~/.ssh/id_rsa
 IdentityFile ~/.ssh/id_dsa
+IdentityFile ~/.ssh/id_rsa
+IdentityFile ~/.ssh/identity
 SendEnv LANG LC_*
 HashKnownHosts no
 Compression yes
