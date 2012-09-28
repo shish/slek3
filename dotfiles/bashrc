@@ -10,7 +10,7 @@ PATH_LOC=~/bin:~/local/bin:~/.local/bin:$PATH_PHP
 PATH_OPT=/opt/cs/bin:/opt/e17/bin:/opt/cb/bin
 export PATH=$PATH_LOC:$PATH_SYS:$PATH_USR:$PATH_OPT
 
-export PYTHONPATH="/opt/e17/lib/python2.6/site-packages:/home/$USER/cvs/scivisumv2/python:$PYTHONPATH"
+export PYTHONPATH="/opt/e17/lib/python2.6/site-packages:/home/$USER/cvs/scivisumv2/python:/home/$USER/.local/python/:$PYTHONPATH"
 export LD_LIBRARY_PATH="/opt/e17/lib:$LD_LIBRARY_PATH"
 export GPG_TTY=\`tty\`
 export EDITOR=vim
