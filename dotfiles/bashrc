@@ -99,6 +99,17 @@ PS2=$C2'['$C1'more info needed'$C2']\n'$C4''
 [[ -f /etc/bash_completion             ]] && . /etc/bash_completion
 
 
+BASH_COMPLETION="${BASH_COMPLETION:-/etc/bash_completion}"
+BASH_COMPLETION_DIR="${BASH_COMPLETION_DIR:=/etc/bash_completion.d}"
+
+if [ ! -f $BASH_COMPLETION ] && [ -d $BASH_COMPLETION_DIR -a -r $BASH_COMPLETION_DIR -a -x $BASH_COMPLETION_DIR ]; then
+	for i in $BASH_COMPLETION_DIR/*; do
+		[[ ${i##*/} != @(*~|*.bak|*.swp|\#*\#|*.dpkg*|.rpm*) ]] &&
+		[ \( -f $i -o -h $i \) -a -r $i ] && . $i
+	done
+fi
+
+
 ###########################################################
 # shell options
 
