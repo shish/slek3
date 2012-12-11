@@ -128,6 +128,15 @@ HISTTIMEFORMAT="%F %T -- "
 
 
 ###########################################################
+# company / site specific things
+
+# scivisum
+export SV_LOG_FORMAT="
+$CYAN%(asctime)19.19s $GREEN%(levelname)-8.8s $PURPLE%(threadName)s $CYAN%(name)s ${YELLOW}svrc://openfile/%(pathname)s#l%(lineno)s
+$WHITE%(message)s"
+
+
+###########################################################
 # say hello
 
 if md5sum -c ~/.motd.seen ; then
