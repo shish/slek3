@@ -1,0 +1,15 @@
+# split off top pane
+select-pane -t 0
+split-window -v -p 95
+
+# split the new top pane in half
+select-pane -t 0
+split-window -h -l 40
+
+# split off bottom pane
+select-pane -t 2
+split-window -v -p 5
+
+# split the middle in half
+select-pane -t 2
+split-window -h -p 50
