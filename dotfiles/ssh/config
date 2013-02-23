@@ -1,13 +1,17 @@
 Host *
-User shish
-ForwardAgent yes
-ForwardX11 yes
-ForwardX11Trusted yes
-CheckHostIP yes
-IdentityFile ~/.ssh/id_dsa
-IdentityFile ~/.ssh/id_rsa
-IdentityFile ~/.ssh/identity
-SendEnv LANG LC_*
-HashKnownHosts no
-Compression yes
-ServerAliveInterval 30
+	User shish
+	ForwardAgent yes
+	ForwardX11 yes
+	ForwardX11Trusted yes
+	CheckHostIP yes
+	NoHostAuthenticationForLocalhost yes
+	IdentityFile ~/.ssh/id_dsa
+	IdentityFile ~/.ssh/id_rsa
+	IdentityFile ~/.ssh/identity
+	SendEnv LANG LC_*
+	HashKnownHosts no
+	Compression yes
+	ServerAliveInterval 30
+	ControlMaster auto
+	ControlPath ~/.ssh/mux-%r@%h:%p
+	ControlPersist 600
