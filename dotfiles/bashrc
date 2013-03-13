@@ -11,6 +11,7 @@ BLUE=`printf "\033[94m"`
 PURPLE=`printf "\033[95m"`
 CYAN=`printf "\033[96m"`
 WHITE=`printf "\033[97m"`
+RESET=`printf "\033[0m"`
 
 ###########################################################
 # misc env variables
