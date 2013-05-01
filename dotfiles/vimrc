@@ -39,4 +39,4 @@ map <F8> :bn<CR>
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
 
-call pathogen#infect()
+execute pathogen#infect()
