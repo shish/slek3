@@ -18,7 +18,7 @@ for thing in `ls -1 $SLEK_DIR/dotfiles/` ; do
 	fi
 	if [ -d $SLEK_DIR/dotfiles/$thing ] ; then
 		mkdir -p .$thing
-		cp $SLEK_DIR/dotfiles/$thing/* .$thing/
+		cp -R $SLEK_DIR/dotfiles/$thing/* .$thing/
 	else
 		cp $SLEK_DIR/dotfiles/$thing .$thing
 	fi
