@@ -73,6 +73,7 @@ alias 'apt'='sudo aptitude'
 alias 'xs'='screen -S net htop'
 alias 'eve'='wine explorer /desktop=eve,1920x1080 "C:\Program Files\CCP\EVE\bin\ExeFile.exe"'
 alias 'eve-launcher'='wine "C:\Program Files\CCP\EVE\eve.exe"'
+alias 'p'='pkcon'
 
 
 ###########################################################
