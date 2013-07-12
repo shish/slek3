@@ -1,0 +1,2 @@
+#!/bin/sh
+gpg `find $SLEK_DIR/dotfiles -name "*.gpg"`
