@@ -14,4 +14,4 @@ Host *
 	ServerAliveInterval 30
 	ControlMaster auto
 	ControlPath ~/.ssh/mux-%r@%h:%p
-	ControlPersist 600
+	ControlPersist 3600
