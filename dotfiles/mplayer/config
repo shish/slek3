@@ -12,8 +12,8 @@ zoom = yes
 #vf = screenshot
 ass = yes
 
-cache = 1000
-cache-min = 5
+cache = 10240
+cache-min = 10
 
 subfont-text-scale = 3
 prefer-ipv4 = yes
