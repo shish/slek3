@@ -16,17 +16,7 @@ RESET=`printf "\033[0m"`
 ###########################################################
 # misc env variables
 
-PATH_SYS=/sbin:/usr/local/sbin:/usr/sbin
-PATH_USR=/bin:/usr/local/bin:/usr/bin:/usr/games
-PATH_PHP=~/pear/pear:~/pear:~/.pear:~/.local/pear
-PATH_LOC=~/bin:~/local/bin:~/.local/bin:$PATH_PHP
-PATH_OPT=/opt/cs/bin:/opt/e17/bin:/opt/cb/bin
-export PATH=$PATH_LOC:$PATH_SYS:$PATH_USR:$PATH_OPT
-
-export PYTHONPATH="/opt/e17/lib/python2.6/site-packages:/home/$USER/cvs/scivisumv2/python:/home/$USER/.local/python/:$PYTHONPATH"
 export GOPATH=/home/$USER/.gocode
-export LD_LIBRARY_PATH="/opt/e17/lib:$LD_LIBRARY_PATH"
-export GPG_TTY=\`tty\`
 export EDITOR=vim
 export TZ=Europe/London
 
@@ -47,10 +37,10 @@ export TZ=Europe/London
 #	. ~/.keychain/\`hostname\`-sh
 #fi
 
-if [ -n "$GNOME_KEYRING_PID" ] && [ -f ~/.ssh/id_rsa ] ; then
-	eval $(gnome-keyring-daemon --start)
-	export SSH_AUTH_SOCK
-fi
+#if [ -n "$GNOME_KEYRING_PID" ] && [ -f ~/.ssh/id_rsa ] ; then
+#	eval $(gnome-keyring-daemon --start)
+#	export SSH_AUTH_SOCK
+#fi
 
 
 ###########################################################
@@ -58,6 +48,9 @@ fi
 
 if [ `uname -s` == "SunOS" ] ; then
 	alias 'ls'='gnuls --color=auto'
+elif [ `uname -s` == "Darwin" ] ; then
+	export CLICOLOR=1
+	export LSCOLORS=ExFxBxDxCxegedabagacad
 else
 	alias 'ls'='ls --color=auto'
 fi
@@ -68,13 +61,7 @@ alias 'less'='less -r'
 alias 'rm'='rm -i'
 alias 'mv'='mv -i'
 alias 'cp'='cp -i'
-alias 'more'='less -E'
 alias 'which'='type -p'
-alias 'apt'='sudo aptitude'
-alias 'xs'='screen -S net htop'
-alias 'eve'='wine explorer /desktop=eve,1920x1080 "C:\Program Files\CCP\EVE\bin\ExeFile.exe"'
-alias 'eve-launcher'='wine "C:\Program Files\CCP\EVE\eve.exe"'
-alias 'p'='pkcon'
 
 
 ###########################################################
@@ -97,8 +84,6 @@ PS2=$C2'['$C1'more info needed'$C2']\n'$C4''
 ###########################################################
 # add personal program and manual folders if they exist
 
-[[ -f ~/.config/autopackage/paths-bash ]] && . ~/.config/autopackage/paths-bash
-[[ -f /opt/kroc/bin/kroc-setup.sh      ]] && . /opt/kroc/bin/kroc-setup.sh
 [[ -f /etc/bash_completion             ]] && . /etc/bash_completion
 
 
@@ -122,8 +107,8 @@ HISTTIMEFORMAT="%F %T -- "
 ###########################################################
 # company / site specific things
 
-if [ -f ~/.scivisum.sh ] ; then
-	. ~/.scivisum.sh
+if [ -f ~/.local_profile.sh ] ; then
+	. ~/.local_profile.sh
 fi
 
 
@@ -139,9 +124,9 @@ fi
 
 clear
 if [ ! -z "$MSG" ] ; then
-	echo 
-	echo "$MSG"
-	echo
-	echo "                    ==========                    =========="
-	echo
+    echo 
+    echo "$MSG"
+    echo
+    echo "                    ==========                    =========="
+    echo
 fi
