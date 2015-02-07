@@ -76,7 +76,7 @@ XTITLE='\e]2;\u@\H -- \w\a'
 if [ "$DISPLAY" == "" ] ; then
         XTITLE=''
 fi
-PS1=$XTITLE$C2'['$C1'\u'$C2'] on ['$C1'\h'$C2'] '$C2'\d \T'$NONE$C3' \w\n$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | sed "s/\(..*\)/\1 /")>'$C4''
+PS1=$XTITLE$C2'['$C1'\u'$C2'] on ['$C1'\h'$C2'] '$C2'\d \T'$NONE$C3' \w\n\$ '$C4''
 PS2=$C2'['$C1'more info needed'$C2']\n'$C4''
 
 
