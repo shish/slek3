@@ -16,7 +16,7 @@ RESET=`printf "\033[0m"`
 ###########################################################
 # misc env variables
 
-export GOPATH=/home/$USER/.gocode
+export GOPATH=$HOME/.gocode
 export EDITOR=vim
 export TZ=Europe/London
 
