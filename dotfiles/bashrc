@@ -99,8 +99,8 @@ shopt -s no_empty_cmd_completion
 PROMPT_COMMAND='history -a'
 HISTCONTROL=ignoredups
 HISTCONTROL=ignoreboth
-HISTSIZE=10000
-HISTFILESIZE=10000
+HISTSIZE=100000
+HISTFILESIZE=-1
 HISTTIMEFORMAT="%F %T -- "
 
 

@@ -6,7 +6,7 @@ deflogin off
 
 vbell off
 
-defscrollback 2048
+defscrollback 40960
 
 # Remove some stupid / dangerous key bindings
 bind ^k
