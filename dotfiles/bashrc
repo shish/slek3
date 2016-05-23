@@ -96,12 +96,13 @@ shopt -s checkhash
 shopt -s histappend
 shopt -s checkwinsize
 shopt -s no_empty_cmd_completion
-PROMPT_COMMAND='history -a'
-HISTCONTROL=ignoredups
-HISTCONTROL=ignoreboth
-HISTSIZE=100000
-HISTFILESIZE=-1
-HISTTIMEFORMAT="%F %T -- "
+export PROMPT_COMMAND='history -a'
+export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoreboth
+export HISTSIZE=
+export HISTFILESIZE=
+export HISTTIMEFORMAT="%F %T -- "
+export HISTFILE="$HOME/.bash_eternal_history"
 
 
 ###########################################################
