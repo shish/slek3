@@ -13,10 +13,10 @@ if v:version >= 700
 	set spellfile=~/.vimspell.en_gb.add
 	set spellfile=~/.vimspell.add
 endif
+set colorcolumn=81,101 " absolute columns to highlight "
+set colorcolumn=+1,+21 " relative (to textwidth) columns to highlight "
 
 autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
-autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
-autocmd FileType renpy set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
@@ -24,8 +24,14 @@ autocmd BufReadPost *
 \   exe "normal! g'\"" |
 \ endif
 
+" python
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+autocmd FileType python autocmd BufWritePost <buffer> call Flake8()
+autocmd FileType renpy set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd BufNewFile,BufRead *.mako setlocal ft=mako
 let python_highlight_all = 1
+let g:flake8_show_in_gutter=1
+let g:flake8_show_in_file=1
 
 " Removes trailing spaces
 function TrimWhiteSpace()
@@ -33,10 +39,13 @@ function TrimWhiteSpace()
   ''
 :endfunction
 
+" custom keys
 map <F5> :bp<CR>
 map <F6> :w<CR>
 map <F8> :bn<CR>
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
 
+" plugins
 execute pathogen#infect()
+
