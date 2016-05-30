@@ -96,6 +96,7 @@ shopt -s checkhash
 shopt -s histappend
 shopt -s checkwinsize
 shopt -s no_empty_cmd_completion
+
 export PROMPT_COMMAND='history -a'
 export HISTCONTROL=ignoreboth
 export HISTSIZE=
