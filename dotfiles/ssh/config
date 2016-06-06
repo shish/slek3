@@ -4,9 +4,7 @@ Host *
 	ForwardX11Trusted yes
 	CheckHostIP yes
 	NoHostAuthenticationForLocalhost yes
-	IdentityFile ~/.ssh/id_dsa
 	IdentityFile ~/.ssh/id_rsa
-	IdentityFile ~/.ssh/identity
 	SendEnv LANG LC_*
 	HashKnownHosts no
 	Compression yes
