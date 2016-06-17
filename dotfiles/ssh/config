@@ -17,3 +17,7 @@ Host *.shishnet.org
 	ControlMaster auto
 	ControlPath ~/.ssh/mux-%r@%h:%p
 	ControlPersist 3600
+
+Host *.onion
+	User shish
+	ProxyCommand ncat --proxy 127.0.0.1:9050 --proxy-type socks5 %h %p
