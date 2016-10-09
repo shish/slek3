@@ -1,0 +1,36 @@
+#!/bin/sh
+
+###########################################################
+# misc env variables
+
+export GOPATH=$HOME/.gocode
+export EDITOR=vim
+export TZ=Europe/London
+
+
+###########################################################
+# common aliases
+
+if [[ `uname -s` == "SunOS" ]] ; then
+	alias 'ls'='gnuls --color=auto'
+elif [[ `uname -s` == "Darwin" ]] ; then
+	export CLICOLOR=1
+	export LSCOLORS=ExFxBxDxCxegedabagacad
+	alias df='gdf'
+else
+	alias ls='ls --color=auto'
+fi
+
+alias l='ls'
+alias ll='ls -golh'
+alias less='less -r'
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+alias which='type -p'
+
+alias ta='tmux attach -t'
+alias tad='tmux attach -d -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+

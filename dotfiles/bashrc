@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ~/.shellrc
+
 ###########################################################
 # pretty~
 
@@ -13,12 +15,6 @@ CYAN=`printf "\033[96m"`
 WHITE=`printf "\033[97m"`
 RESET=`printf "\033[0m"`
 
-###########################################################
-# misc env variables
-
-export GOPATH=$HOME/.gocode
-export EDITOR=vim
-export TZ=Europe/London
 
 
 ###########################################################
@@ -26,42 +22,6 @@ export TZ=Europe/London
 # for interactive mode
 
 [ -z "$PS1" ] && return
-
-
-###########################################################
-# keychain
-
-# ssh does this sensibly now, prompting on first connect
-#if [ \`whoami\` == "shish" ] && [ "x$SSH_AGENT_PID" == "x" ] && [ -f ~/.ssh/id_dsa ] ; then
-#	keychain -q ~/.ssh/id_dsa
-#	. ~/.keychain/\`hostname\`-sh
-#fi
-
-#if [ -n "$GNOME_KEYRING_PID" ] && [ -f ~/.ssh/id_rsa ] ; then
-#	eval $(gnome-keyring-daemon --start)
-#	export SSH_AUTH_SOCK
-#fi
-
-
-###########################################################
-# common aliases
-
-if [ `uname -s` == "SunOS" ] ; then
-	alias 'ls'='gnuls --color=auto'
-elif [ `uname -s` == "Darwin" ] ; then
-	export CLICOLOR=1
-	export LSCOLORS=ExFxBxDxCxegedabagacad
-else
-	alias 'ls'='ls --color=auto'
-fi
-
-alias 'l'='ls'
-alias 'll'='ls -golh'
-alias 'less'='less -r'
-alias 'rm'='rm -i'
-alias 'mv'='mv -i'
-alias 'cp'='cp -i'
-alias 'which'='type -p'
 
 
 ###########################################################
