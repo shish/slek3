@@ -4,6 +4,7 @@
 # misc env variables
 
 export GOPATH=$HOME/.gocode
+export PATH=$PATH:$HOME/.gocode/bin
 export EDITOR=vim
 export TZ=Europe/London
 
@@ -16,21 +17,23 @@ if [[ `uname -s` == "SunOS" ]] ; then
 elif [[ `uname -s` == "Darwin" ]] ; then
 	export CLICOLOR=1
 	export LSCOLORS=ExFxBxDxCxegedabagacad
-	alias df='gdf'
+	alias 'df'='gdf'
+	alias 'du'='gdu'
+	alias 'sort'='gsort'
 else
-	alias ls='ls --color=auto'
+	alias 'ls'='ls --color=auto'
 fi
 
-alias l='ls'
-alias ll='ls -golh'
-alias less='less -r'
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
-alias which='type -p'
+alias 'l'='ls'
+alias 'll'='ls -golh'
+alias 'less'='less -r'
+alias 'rm'='rm -i'
+alias 'mv'='mv -i'
+alias 'cp'='cp -i'
+alias 'which'='type -p'
 
-alias ta='tmux attach -t'
-alias tad='tmux attach -d -t'
-alias ts='tmux new-session -s'
-alias tl='tmux list-sessions'
+alias 'ta'='tmux attach -t'
+alias 'tad'='tmux attach -d -t'
+alias 'ts'='tmux new-session -s'
+alias 'tl'='tmux list-sessions'
 
