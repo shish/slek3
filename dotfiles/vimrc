@@ -9,9 +9,6 @@ set title
 set hlsearch
 set foldmethod=marker
 set mouse-=a   " don't do clever mouse things
-set spelllang=en_gb
-set spellfile=~/.vimspell.en_gb.add
-set spellfile=~/.vimspell.add
 set colorcolumn=81,101 " absolute columns to highlight "
 set colorcolumn=+1,+21 " relative (to textwidth) columns to highlight "
 set autoread   " update when a file is changed from outside
@@ -30,15 +27,7 @@ autocmd FileType renpy set tabstop=4|set shiftwidth=4|set expandtab|set softtabs
 autocmd BufNewFile,BufRead *.mako setlocal ft=mako
 let python_highlight_all = 1
 
-" Removes trailing spaces
-function TrimWhiteSpace()
-  %s/\s*$//
-  ''
-:endfunction
-
 " custom keys
 map <F5> :bp<CR>
 map <F6> :w<CR>
 map <F8> :bn<CR>
-map <F2> :call TrimWhiteSpace()<CR>
-map! <F2> :call TrimWhiteSpace()<CR>

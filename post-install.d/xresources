@@ -1,6 +1,0 @@
-#!/bin/bash
-if [ `uname -s` == "Linux" ] ; then
-	if [ `which xrdb` ] ; then
-		xrdb ~/.Xresources
-	fi
-fi

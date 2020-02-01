@@ -1,29 +1,23 @@
 #!/bin/bash
 
+set +eux
+
 cd `dirname $0`
 export SLEK_DIR=`pwd`
-export SLEK_PRIVATE=$SLEK_DIR/private
 export BACKUP_DIR="$SLEK_DIR/backup-`date +%Y%m%d-%H%M%S`"
 mkdir $BACKUP_DIR
 
 cd ~/
 
-for file in `echo $SLEK_DIR/pre-install.d/*` ; do
-	$file
-done
-
-for thing in `ls -1 $SLEK_DIR/dotfiles/` ; do
-	if [ -e .$thing ] ; then 
-		cp -r .$thing $BACKUP_DIR/$thing
-	fi
-	if [ -d $SLEK_DIR/dotfiles/$thing ] ; then
-		mkdir -p .$thing
-		cp -R $SLEK_DIR/dotfiles/$thing/* .$thing/
+for thing in `ls -1a $SLEK_DIR/dotfiles/ | grep -vE "^(\.|\.\.)$"` ; do
+	if [ -L .$thing ] ; then
+		echo "Skipping $thing: already a link"
 	else
-		cp $SLEK_DIR/dotfiles/$thing .$thing
+		if [ -e .$thing ] ; then 
+			echo "Moving old $thing to $BACKUP_DIR"
+			mv .$thing $BACKUP_DIR/$thing
+		fi
+		echo "Linking $thing to the repo"
+		ln -s $SLEK_DIR/dotfiles/$thing ~/.$thing
 	fi
-done
-
-for file in `echo $SLEK_DIR/post-install.d/*` ; do
-	$file
 done

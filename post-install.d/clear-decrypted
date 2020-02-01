@@ -1,5 +1,0 @@
-#!/bin/bash
-
-for n in `find $SLEK_DIR/dotfiles -name "*.gpg"` ; do
-	rm -f `echo -n $n | sed s/.gpg//`
-done

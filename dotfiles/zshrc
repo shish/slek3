@@ -1,26 +1,108 @@
 #!/bin/zsh
 
-export ZSH=/Users/shish2k/.oh-my-zsh
-plugins=(git mercurial)
-ZSH_THEME="robbyrussell"
+source ~/.shellrc
+source ~/.local_profile.sh
+
 HYPHEN_INSENSITIVE="true"
-# DISABLE_AUTO_UPDATE="true"
-# export UPDATE_ZSH_DAYS=13
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
+REPORTTIME=3
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+#LOCAL_ADMIN_SCRIPTS=/usr/facebook/ops/rc
+#if [ -f $LOCAL_ADMIN_SCRIPTS/scm-prompt ]; then
+#  source $LOCAL_ADMIN_SCRIPTS/scm-prompt
+#fi
 
-source $ZSH/oh-my-zsh.sh
+#%B%F{yellow}%K{yellow}%{%}%B%F{white}%K{yellow}%n@%m%b%F{red}%K{yellow}%{%}%b%F{red}%K{black}%{%}%B%F{white}%K{black} %D{%a %b %d} %D{%I:%M:%S%P}%}%B%F{yellow}%K{black}%~/%b%f%k
+# %j - jobs
+# %L - shlvl
+# %? - exit code
+# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#SEC59
 
-compdef mosh=ssh
-PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)$(hg_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
-ZSH_THEME_HG_PROMPT_PREFIX="%{$fg_bold[magenta]%}hg:(%{$fg[red]%}"
-ZSH_THEME_HG_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_HG_PROMPT_DIRTY="%{$fg[magenta]%}) %{$fg[yellow]%}✗%{$reset_color%}"
-ZSH_THEME_HG_PROMPT_CLEAN="%{$fg[magenta]%})"
+setopt promptsubst
+PROMPT_STATBAR="\${(r:\$COLUMNS/3:: :)}%U%(?.%F{green}.%F{red})\${(r:\$COLUMNS/3:: :)}%u"
+PROMPT_LOC="%F{white}[%F{yellow}%B%n%b%f@%F{yellow}%B%m%b%f:%F{yellow}%B%~%b%f]"
+PROMPT_DATE="%B%D{%a %b %d %H:%M:%S}%f%b"
+PROMPT_MAP="\$KEYMAP"
+PROMPT_CMD="%(?.%F{green}.%F{red})%(!.#.$) %f%k"
+#PROMPT_CMD="%F{yellow}\$(_dotfiles_scm_info \(\%s\))%f%(!.#.$) %f%k"
+#PROMPT_CMD="%F{yellow}\$(git_prompt_info)\$(hg_prompt_info)%f%(!.#.$) %f%k"
 
+PROMPT="
+$PROMPT_LOC $PROMPT_CMD"
+RPROMPT="$PROMPT_MAP $PROMPT_DATE"
+
+# Broken on OSX?
+# TRAPWINCH() {zle reset-prompt}
+# TRAPALRM() {zle reset-prompt}
+# TMOUT=1
+
+export KEYTIMEOUT=1
+bindkey "^?" backward-delete-char
+bindkey "^H" backward-delete-char
+bindkey "^W" backward-kill-word 
+bindkey "^U" backward-kill-line            
+bindkey '^R' history-incremental-search-backward
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[A" history-search-backward
+bindkey "\e[B" history-search-forward
+
+# OSX / iTerm2
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
+
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=999999999
+SAVEHIST=$HISTSIZE
+
+# Show history
+case $HIST_STAMPS in
+  "mm/dd/yyyy") alias history='fc -fl 1' ;;
+  "dd.mm.yyyy") alias history='fc -El 1' ;;
+  "yyyy-mm-dd") alias history='fc -il 1' ;;
+  *) alias history='fc -l 1' ;;
+esac
+
+# IAHT implies and / or breaks the other flags here
+# setopt append_history  # don't overwrite
+# setopt inc_append_history  # write immediately
+# setopt share_history # share command history data
+setopt extended_history        # save timestamps
+setopt inc_append_history_time # write after command finishes, with timestamp
+setopt hist_expire_dups_first
+setopt hist_ignore_dups        # ignore duplication in command history list
+setopt hist_ignore_space       # don't put commands that start with space into history
+setopt hist_verify
+setopt HIST_FIND_NO_DUPS       # don't show dupes when searching
+setopt NO_FLOW_CONTROL         # disable start (C-s) and stop (C-q) characters
+setopt SHARE_HISTORY           # share history across shells
+
+unset TZ
+
+###########################################################
+# say hello
+
+if [ ! -f /etc/motd ] || md5sum -c ~/.motd.seen ; then
+    MSG=`fortune`
+else
+    MSG=`cat /etc/motd`
+    md5sum /etc/motd > ~/.motd.seen
+fi
+
+clear
+if [ ! -z "$MSG" ] ; then
+    echo 
+    echo "$MSG"
+    echo
+    echo "                    ==========                    =========="
+    echo
+fi
