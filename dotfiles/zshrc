@@ -84,7 +84,9 @@ setopt hist_ignore_space       # don't put commands that start with space into h
 setopt hist_verify
 setopt HIST_FIND_NO_DUPS       # don't show dupes when searching
 setopt NO_FLOW_CONTROL         # disable start (C-s) and stop (C-q) characters
-setopt SHARE_HISTORY           # share history across shells
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+autoload -U compinit && compinit
 
 unset TZ
 
