@@ -4,7 +4,7 @@ Host *
 	ForwardX11Trusted yes
 	CheckHostIP yes
 	NoHostAuthenticationForLocalhost yes
-	IdentityFile ~/.ssh/id_rsa
+	# IdentityFile ~/.ssh/id_rsa
 	SendEnv LANG LC_*
 	HashKnownHosts no
 	Compression yes
@@ -14,14 +14,34 @@ Host *
 	ControlPath ~/.ssh/mux-%C
 	ControlPersist 3600
 
-host 192.168.*
+Host chai
+	User shish
+	Hostname 192.168.1.58
+
+Host 192.168.1.38
+	User root
+	ForwardAgent yes
+
+Host 192.168.1.40
+	User magiceraser
+	ForwardAgent yes
+
+Host 192.168.1.42
+	User magiceraser
+	ForwardAgent yes
+
+Host 192.168.*
 	User shish
 
-host *.shishnet.org
+Host shishnet.org
 	User shish
 
-host *.paheal.net
+Host *.shishnet.org
 	User shish
+
+Host *.paheal.net
+	User shish
+	AddressFamily inet
 
 Host *.onion
 	ControlMaster auto

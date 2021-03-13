@@ -31,3 +31,4 @@ let python_highlight_all = 1
 map <F5> :bp<CR>
 map <F6> :w<CR>
 map <F8> :bn<CR>
+map ; :
