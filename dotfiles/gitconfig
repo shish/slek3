@@ -3,3 +3,5 @@
 	email = shish@shishnet.org
 [color]
 	ui = auto
+[pull]
+	rebase = true
