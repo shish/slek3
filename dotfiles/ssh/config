@@ -1,7 +1,7 @@
 Host *
 	ForwardAgent yes
-	ForwardX11 yes
-	ForwardX11Trusted yes
+	ForwardX11 no
+	ForwardX11Trusted no
 	CheckHostIP yes
 	NoHostAuthenticationForLocalhost yes
 	# IdentityFile ~/.ssh/id_rsa
@@ -16,7 +16,11 @@ Host *
 
 Host chai
 	User shish
-	Hostname 192.168.1.58
+	Hostname 192.168.1.83
+
+Host hana
+	User shish
+	Hostname 192.168.1.37
 
 Host 192.168.1.38
 	User root
@@ -44,8 +48,9 @@ Host *.paheal.net
 	AddressFamily inet
 
 Host *.onion
-	ControlMaster auto
-	ControlPath ~/.ssh/mux-%C
 	User shish
 	ProxyCommand ncat --proxy 127.0.0.1:9050 --proxy-type socks5 %h %p
 	HashKnownHosts yes
+
+# For vscode
+Host violet.shishnet.org
