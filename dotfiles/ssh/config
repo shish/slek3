@@ -10,7 +10,8 @@ Host *
 	Compression yes
 	ServerAliveInterval 30
 	ControlMaster auto
-	ControlPath ~/.ssh/mux-%r@%h:%p
+	#ControlPath ~/.ssh/mux-%r@%h:%p
+	ControlPath ~/.ssh/mux-%C
 	ControlPersist 3600
 
 host 192.168.*
@@ -23,7 +24,8 @@ host *.paheal.net
 	User shish
 
 Host *.onion
-	ControlMaster no
+	ControlMaster auto
+	ControlPath ~/.ssh/mux-%C
 	User shish
 	ProxyCommand ncat --proxy 127.0.0.1:9050 --proxy-type socks5 %h %p
 	HashKnownHosts yes
