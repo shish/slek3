@@ -4,8 +4,21 @@
 # misc env variables
 
 export GOPATH=$HOME/.gocode
-export PATH=$PATH:$HOME/.gocode/bin
-export PATH="$HOME/.cargo/bin:$PATH"
+
+export PATH="${HOME}/.gocode/bin:${PATH}"
+export PATH="${HOME}/.cargo/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${PATH}"
+export PATH="${HOME}/homebrew/bin:${PATH}"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/node@14/bin:$PATH"
+
+export CPATH="${HOME}/homebrew/include:${CPATH}"
+export LIBRARY_PATH="${HOME}/homebrew/lib:${LIBRARY_PATH}"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 export EDITOR=vim
 export TZ=Europe/London
 
@@ -37,4 +50,3 @@ alias 'ta'='tmux attach -t'
 alias 'tad'='tmux attach -d -t'
 alias 'ts'='tmux new-session -s'
 alias 'tl'='tmux list-sessions'
-

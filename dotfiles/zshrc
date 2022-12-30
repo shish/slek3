@@ -108,5 +108,3 @@ if [ ! -z "$MSG" ] ; then
     echo "                    ==========                    =========="
     echo
 fi
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/node@14/bin:$PATH"

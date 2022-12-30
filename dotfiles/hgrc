@@ -36,8 +36,8 @@ attend-smartlog = false
 [templatealias]
 #sl_diffstatus = "{phabstatus}{ifeq(phabstatus, 'Needs Revision', '*')} {phabsignals}"
 #sl_diffstatus = "{phabstatus} {phabsignals}"
-sl_diffstatus = "{phabstatus}"
-ssl_unsync = "{label('ssl.unsync', ifeq(syncstatus, 'unsync', '(L)'))}"
+#sl_diffstatus = "{phabstatus}"
+#ssl_unsync = "{label('ssl.unsync', ifeq(syncstatus, 'unsync', '(L)'))}"
 sl_header_super_shish = "{separate('  ', sl_userdefined_prefix, sl_node_info, sl_diff_super, sl_books, sl_branch, sl_userdefined_suffix)}"
 sss='{pad(sl_header_super_shish,40)} {ifeq(graphnode, '@', '\x1B[35m', '')}{sl_desc}\x1B[0m {sl_tasks}'
 
